@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <div style=" display: flex; justify-content: center; ">  <h1> Todo App  </h1>   <img style="width: 50px; height: 50px; margin:33px 0 0 10px" :src="logo"> </div>
+   <h1> Todo App  </h1>
 
     <todo-form @submit="addTodo" />
 
@@ -42,7 +42,7 @@ export default {
     return {
       todos: [],
       completed: [],
-      logo: require('../../public/favicon.png')
+
     }
   },
   computed: {
