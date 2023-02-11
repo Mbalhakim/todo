@@ -1,6 +1,7 @@
 <template>
   <div id="main">
-    <h1>Todo App</h1>
+    <div style=" display: flex; justify-content: center; ">  <h1> Todo App  </h1>   <img style="width: 50px; height: 50px; margin:33px 0 0 10px" :src="logo"> </div>
+
     <todo-form @submit="addTodo" />
 
     <h3 v-if="sortedTodos.length > 0">Todo</h3>
@@ -32,6 +33,7 @@ import ListItem from './ListItem.vue'
 
 export default {
   name: 'TodoList',
+
   components: {
     TodoForm,
     ListItem
@@ -39,7 +41,8 @@ export default {
   data() {
     return {
       todos: [],
-      completed: []
+      completed: [],
+      logo: require('../../public/favicon.png')
     }
   },
   computed: {
