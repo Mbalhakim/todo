@@ -5,22 +5,22 @@
 </template>
 
 <script>
-import TodoList from './components/TodoList.vue'
+import TodoList from './components/TodoList.vue';
 
 export default {
   name: 'app',
   components: {
-    TodoList
-  }
-}
+    TodoList,
+  },
+};
 </script>
 
 <style>
 #app {
-  background-color: #A8E6CF;
+  background-color: #a8e6cf; /* Corrected color code */
   padding: 0;
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -28,6 +28,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-
 }
 </style>

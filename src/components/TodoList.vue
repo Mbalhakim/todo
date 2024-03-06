@@ -1,29 +1,35 @@
 <template>
   <div id="main">
-   <h1> Todo App  </h1>
+    <h1>Todo App</h1>
 
     <todo-form @submit="addTodo" />
 
-    <h3 v-if="sortedTodos.length > 0">Todo</h3>
-    <ul>
-      <list-item
-          v-for="(todo, i) in sortedTodos"
-          :key="i"
-          :todo="todo"
-          @delete="deleteTodo(i)"
-          @complete="completeTodo(i)"
-          @edit="completeTodo(i)"/>
-    </ul>
+    <div class="todo-section">
+      <h3 v-if="sortedTodos.length > 0">Todo</h3>
+      <ul>
+        <list-item
+            v-for="(todo, i) in sortedTodos"
+            :key="i"
+            :todo="todo"
+            @delete="deleteTodo(i)"
+            @complete="completeTodo(i)"
+            @edit="completeTodo(i)"
+        />
+      </ul>
+    </div>
 
-    <h3 v-if="completed.length > 0">Done</h3>
-    <ul>
-      <list-item
-          v-for="(todo, i) in completed"
-          :key="i"
-          :todo="todo"
-          :isCompleted="true"
-          @delete="deleteTodo({ i, isCompleted: true })"/>
-    </ul>
+    <div class="completed-section">
+      <h3 v-if="completed.length > 0">Done</h3>
+      <ul>
+        <list-item
+            v-for="(todo, i) in completed"
+            :key="i"
+            :todo="todo"
+            :isCompleted="true"
+            @delete="deleteTodo({ i, isCompleted: true })"
+        />
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -91,8 +97,9 @@ export default {
 <style scoped>
 h1 {
   text-align: center;
+  font-size: 2.2em;
   margin: 40px 0;
-  color: #000000;
+  color: #5c3a21;
 }
 
 ul {
@@ -100,9 +107,20 @@ ul {
   padding: 0;
 }
 
-#main{
-  background-color: #FFD3B6;
-  border-radius: 20px;
-  padding: 20px;
+#main {
+background-color: #f2c4b4 ;
+  max-width: 400px;
+  border-radius: 30px ;
+  margin: 20px auto;
+  padding: 16px;
+  flex-grow: 1;
+  overflow-y: auto;
 }
+
+.todo-section,
+.completed-section {
+
+  margin-top: 24px;
+}
+
 </style>

@@ -1,12 +1,26 @@
 <template>
-<li class="todo-item" :class="{ completed: isCompleted }">
-  <p>{{ todo.priority }} | {{ todo.title }}</p>
-  <span>
-    <button type="button" class ="delete-button" @click="deleteTodo">X</button>
-
-    <button type="button" class ="complete-button" @click="completeTodo" v-if="!isCompleted">✓</button>
-  </span>
-</li>
+  <li class="todo-item" :class="{ completed: isCompleted }" :style="priorityStyle">
+    <p>{{ todo.priority }} | {{ todo.title }}</p>
+    <span>
+      <button
+          type="button"
+          class="delete-button"
+          @click="deleteTodo"
+          title="Delete"
+      >
+        🗑️
+      </button>
+      <button
+          type="button"
+          class="complete-button"
+          @click="completeTodo"
+          v-if="!isCompleted"
+          title="Mark as Completed"
+      >
+        ✓
+      </button>
+    </span>
+  </li>
 </template>
 
 <script>
@@ -16,31 +30,44 @@ export default {
     todo: Object,
     isCompleted: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
+  },
+  computed: {
+    priorityStyle() {
+      const priority = this.todo.priority;
+      const hue = (priority / 10) * 120; // Map priority to hue (0-120)
+      return {
+        backgroundColor: `hsl(${hue}, 70%, 50%)`,
+      };
+    },
   },
   methods: {
     deleteTodo() {
-      this.$emit('delete')
+      this.$emit('delete');
     },
     completeTodo() {
-      this.$emit('complete')
+      this.$emit('complete');
     },
-
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
 .todo-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 16px 0;
   padding: 8px;
   padding-left: 16px;
-  background-color: #42b983;
   border-radius: 8px;
   color: white;
+  transition: background-color 0.3s ease;
+}
+
+.todo-item:hover {
+  background-color: #379a6f;
 }
 
 span {
@@ -49,42 +76,27 @@ span {
 }
 
 button {
-  /* clear button styling */
   background: none;
   outline: none;
   border: none;
   padding: 0;
-
-  /* custom styling */
   margin-left: 8px;
   border-radius: 50%;
   width: 32px;
   height: 32px;
   color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.delete-button {
-  font-weight: bold;
-}
-
-.edit-button {
-  font-size: 1.2em;
-}
-
-.complete-button {
-  font-size: 1.2em;
-}
-
-button:active {
+button:hover {
   background-color: white;
   color: #42b983;
+  transform: scale(1.1);
 }
 
 .completed {
   background-color: rgba(66, 185, 131, 0.4);
-}
-
-.completed > p{
   text-decoration: line-through;
 }
 </style>
